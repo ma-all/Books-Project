@@ -30,6 +30,10 @@ app.use(session({ //handles the session
     })
 }))
 
+app.get('/', (req, res) => {
+    res.send('test route')
+})
+
 app.listen(port, () => {
     console.log(`Listening on port ${port}`)
 })
