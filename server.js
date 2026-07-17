@@ -11,6 +11,8 @@ const morgan = require('morgan')
 const session = require('express-session') //manage user sessions 
 const { MongoStore } = require('connect-mongo')
 
+
+
 const port = process.env.PORT ? process.env.PORT : '3000'
 
 mongoose.connect(process.env.MONGODB_URI)
@@ -31,8 +33,12 @@ app.use(session({ //handles the session
 }))
 
 app.get('/', (req, res) => {
-    res.render('home.ejs')
+    res.render('signed-home.ejs', {
+        user: req.session.user
+    })
 })
+
+
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`)
