@@ -33,8 +33,12 @@ app.use(session({ //handles the session
 }))
 
 //auth  
-app.get('/auth/sign-up', authCtrl.signUpForm)
+//sign up
+app.get('/auth/sign-up', authCtrl.signUpForm) 
 app.post('/auth/sign-up', authCtrl.signUp)
+//sign in
+app.get('/auth/sign-in', authCtrl.signInForm)
+app.post('/auth/sign-in', authCtrl.signIn)
 
 app.get('/', (req, res) => {
     res.render('signed-home.ejs', {
