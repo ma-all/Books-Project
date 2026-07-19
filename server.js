@@ -14,6 +14,8 @@ const upload = require('./config/multer') //for the image
 
 //needed to check if user is signed in or not
 const userIsSigned = require('./middleware/is-user-signed-in')
+//for viewing
+const allowViewing = require('./middleware/allow-view')
 
 const authCtrl = require('./controllers/auth')
 const bookCtrl = require('./controllers/books')
@@ -36,6 +38,8 @@ app.use(session({ //handles the session
         mongoUrl: process.env.MONGODB_URI
     })
 }))
+
+app.use(allowViewing)
 
 //auth  
 //sign up
