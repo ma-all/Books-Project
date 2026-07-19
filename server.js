@@ -52,10 +52,12 @@ app.post('/auth/sign-in', authCtrl.signIn)
 //books
 //adding book
 app.get('/books/new', userIsSigned, bookCtrl.addBookForm)
-app.post('/books', userIsSigned, uploadimages.single('image'), bookCtrl.addBook)
+app.post('/books/create', userIsSigned, uploadimages.single('image'), bookCtrl.addBook)
 
 //displays all books
 app.get('/books', userIsSigned, bookCtrl.index)
+//for status
+app.post('/books', userIsSigned, bookCtrl.index)
 
 //shows a book details
 app.get('/books/:bookId', userIsSigned, bookCtrl.showBook)

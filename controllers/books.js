@@ -25,7 +25,7 @@ const addImg = (fileBuffer) => {
 }
 
 const addBook = async (req, res) => {
-    
+
     const addedImg = await addImg(req.file.buffer)
 
     const bookData = {}
@@ -44,12 +44,27 @@ const addBook = async (req, res) => {
     }
 
     let bookadded = await Book.create(bookData)
-    res.redirect('books/show.ejs')
+    res.redirect('/books')
 }
 
 const index = async (req, res) => {
-    const allBooks = await Book.find().populate('user')
-    res.render('books/index.ejs', {allBooks})
+    const allBooks = await Book.find({user: req.session.user._id}).populate('user')
+    const selectReadingStatus = req.body?.status
+
+    console.log(selectReadingStatus)
+
+    let displayBooks = allBooks
+    if(selectReadingStatus && selectReadingStatus !== 'everyBook') {
+        displayBooks = allBooks.filter(
+            book =>  {
+                return book && book.readingStatus === selectReadingStatus
+            }
+        )
+    }
+    res.render('books/index.ejs', {
+        allBooks: displayBooks,
+        selectReadingStatus: selectReadingStatus || 'everyBook'
+    })
 }
 
 const showBook = async (req, res) => {
@@ -78,7 +93,7 @@ const updateBook = async (req, res) => {
     bookFound.readingStatus = req.body.readingStatus
 
     if(req.file) {
-        const addedImg = await uploadimages(req.file.buffer)
+        const addedImg = await addImg(req.file.buffer)
         bookFound.image = {
             url: addedImg.secure_url,
             publicId: addedImg.public_id,

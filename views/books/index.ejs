@@ -1,16 +1,44 @@
 <%- include('../partials/navbar') %>
 
     <h1>My Books</h1>
-    <ul>
-        <% allBooks.forEach((book) => { %>
-            <a href="/books/<%= book._id %>">
-                <li>
-                    <a href='/books/<%= book._id %>'><img src='<%= book.image.url %>' width="100"></a>
-                    <p> <%= book.title %></p>
-                </li>
-            </a>
-        <% }) %>
-    </ul>
+
+    <form action="/books" method="post">
+        <label>Filter by Reading Status: </label>
+        <select name="status" id="status">
+            <option value="everyBook">All Books</option>
+            <option value="Currently Reading"
+                <% if(selectReadingStatus === 'Currently Reading') { %> selected <% } %> >
+                Currently Reading
+            </option>
+
+            <option value="Done Reading"
+                <% if(selectReadingStatus === 'Done Reading') { %> selected <% } %> >
+                Done Reading
+            </option>
+
+            <option value="To Be Read"
+                <% if(selectReadingStatus === 'To Be Read') { %> selected <% } %> >
+                To Be Read
+            </option>
+
+        </select>
+        <button type="submit">Filter</button>
+    </form>
     
+    <% if(allBooks.length === 0) { %>
+        <p>You don't have any books!</p>
+        <a href="books/new">Add Book</a>
+    <% } else { %>
+        <ul>
+            <% allBooks.forEach((book) => { %>
+                <a href="/books/<%= book._id %>">
+                    <li>
+                        <a href='/books/<%= book._id %>'><img src='<%= book.image.url %>' width="100"></a>
+                        <p> <%= book.title %></p>
+                    </li>
+                </a>
+            <% }) %>
+        </ul>
+    <% } %>
 </body>
 </html>
