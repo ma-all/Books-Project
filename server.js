@@ -54,6 +54,8 @@ app.post('/auth/sign-in', authCtrl.signIn)
 app.get('/books/new', userIsSigned, bookCtrl.addBookForm)
 app.post('/books', userIsSigned, uploadimages.single('image'), bookCtrl.addBook)
 
+app.get('/books', userIsSigned, bookCtrl.index)
+
 app.get('/', (req, res) => {
     res.render('signed-home.ejs', {
         user: req.session.user

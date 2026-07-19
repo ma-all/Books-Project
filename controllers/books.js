@@ -29,6 +29,7 @@ const addBook = async (req, res) => {
     const addedImg = await addImg(req.file.buffer)
 
     const bookData = {}
+    bookData.user = req.session.user._id
     bookData.title = req.body.title
     bookData.author = req.body.author
     bookData.pages = req.body.pages
@@ -46,6 +47,11 @@ const addBook = async (req, res) => {
     res.redirect('books/show.ejs')
 }
 
+const index = async (req, res) => {
+    const allBooks = await Book.find().populate('user')
+    res.render('books/index.ejs', {allBooks})
+}
+
 module.exports = {
-    addBookForm, addBook,
+    addBookForm, addBook, index,
 }
