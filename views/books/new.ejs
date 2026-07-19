@@ -1,0 +1,28 @@
+<%- include('../partials/navbar') %>
+
+    <h1>Add a New Book</h1>
+    
+    <form action="/books" method="post">
+        <label>Title: </label>
+        <input type="text" name="title"/>
+
+        <label>Author: </label>
+        <input type="text" name="author"/>
+
+        <label>Pages: </label>
+        <input type="text" name="pages"/>
+
+        <label>Reading Status: </label>
+        <select name="readingStatus" id="readingStatus">
+            <option value="currentRead">Currently Reading</option>
+            <option value="hasRead">Done Reading</option>
+            <option value="toBeRead">To Be Read</option>
+        </select>
+
+        <!-- <label>Image: </label>
+        <input type="text" name="image"/> -->
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
