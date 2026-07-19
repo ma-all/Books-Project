@@ -1,21 +1,45 @@
 const Book = require('../models/book')
+const cloudinary = require('../config/cloudinary')
 
 const addBookForm = (req, res) => {
     res.render('books/new.ejs')
 }
 
+const addImg = (fileBuffer) => {
+    return new Promise((resolve, reject) => {
+        const uploadimages = cloudinary.uploader.upload_stream({
+            folder: 'books-project/views',
+            resource_type: 'image'
+        },
+        (error, result) => {
+            if(error) {
+                reject(error)
+            } else {
+                resolve(result)
+            }
+        }
+    )
+    uploadimages.end(fileBuffer)
+    })
+}
+
 const addBook = async (req, res) => {
+    const addedImg = await addImg(req.file.buffer)
+
     const bookData = {}
     bookData.title = req.body.title
     bookData.author = req.body.author
     bookData.pages = req.body.pages
     bookData.readingStatus = req.body.readingStatus
-    // bookData.image
+    bookData.image = {
+        url: addedImg.secure_url,
+        publicId: addedImg.public_id,
+    }
 
     let bookadded = await Book.addBook(bookData)
     res.redirect('/books')
 }
 
 module.exports = {
-    addBookForm,
+    addBookForm, addBook,
 }
