@@ -1,7 +1,39 @@
 <%- include('../partials/navbar') %>
 
     <h1>Edit <%= bookFound.title %></h1>
-    
+
+    <form action="/books/<%= bookFound._id %>?_method=PUT" method="post" enctype="multipart/form-data">
+        <label>Title: </label>
+        <input type="text" name="title" value="<%= bookFound.title %>"/>
+
+        <label>Author: </label>
+        <input type="text" name="author" value="<%= bookFound.author %>"/>
+
+        <label>Pages: </label>
+        <input type="number" name="pages" min="0" value="<%= bookFound.pages %>"/>
+
+        <label>Reading Status: </label>
+        <select name="readingStatus" id="readingStatus">
+            <option value="Currently Reading"
+                <% if(bookFound.readingStatus === 'Currently Reading') { %> selected <% } %> >
+                Currently Reading
+            </option>
+
+            <option value="Done Reading"
+            <% if(bookFound.readingStatus === 'Done Reading') { %> selected <% } %> >
+                Done Reading
+            </option>
+
+            <option value="To Be Read"
+            <% if(bookFound.readingStatus === 'To Be Read') { %> selected <% } %> >
+                To Be Read</option>
+        </select>
+
+        <label>Image: </label>
+        <input type="file" name="image" accept="image/jpeg,image/png" />
+
+        <button type="submit">Update Book</button>
+    </form>
     
 </body>
 </html>

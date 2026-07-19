@@ -71,12 +71,11 @@ const updateBook = async (req, res) => {
     const bookFound = await Book.findById(req.params.bookId)
     const oldPublicId = bookFound.image?.publicId
 
-    let bookData = {}
-    bookData.user = req.session.user._id
-    bookData.title = req.body.title
-    bookData.author = req.body.author
-    bookData.pages = req.body.pages
-    bookData.readingStatus = req.body.readingStatus
+    bookFound.user = req.session.user._id
+    bookFound.title = req.body.title
+    bookFound.author = req.body.author
+    bookFound.pages = req.body.pages
+    bookFound.readingStatus = req.body.readingStatus
 
     if(req.file) {
         const addedImg = await uploadimages(req.file.buffer)
@@ -87,10 +86,19 @@ const updateBook = async (req, res) => {
     }
 
     await bookFound.save()
-    await Book.findByIdAndUpdate(req.params.bookId, bookData)
     res.redirect(`/books/${req.params.bookId}`)
 }
 
 module.exports = {
     addBookForm, addBook, index, showBook, editBook, updateBook,
 }
+
+//CODE GRAVEYARD
+//Update Book Function:
+    // let bookData = {}
+    // bookData.user = req.session.user._id
+    // bookData.title = req.body.title
+    // bookData.author = req.body.author
+    // bookData.pages = req.body.pages
+    // bookData.readingStatus = req.body.readingStatus
+    // await Book.findByIdAndUpdate(req.params.bookId, bookData)
