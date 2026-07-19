@@ -8,3 +8,7 @@ const addBookForm = (req, res) => {
 //     const bookData = {}
 //     bookData.title = 
 // }
+
+module.exports = {
+    addBookForm,
+}
