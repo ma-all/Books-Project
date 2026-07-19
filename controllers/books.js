@@ -8,7 +8,7 @@ const addBookForm = (req, res) => {
 const addImg = (fileBuffer) => {
     return new Promise((resolve, reject) => {
         const uploadimages = cloudinary.uploader.upload_stream({
-            folder: 'books-project/views',
+            folder: 'books-project/books',
             resource_type: 'image'
         },
         (error, result) => {
@@ -24,6 +24,8 @@ const addImg = (fileBuffer) => {
 }
 
 const addBook = async (req, res) => {
+    
+    
     const addedImg = await addImg(req.file.buffer)
 
     const bookData = {}
@@ -36,8 +38,12 @@ const addBook = async (req, res) => {
         publicId: addedImg.public_id,
     }
 
-    let bookadded = await Book.addBook(bookData)
-    res.redirect('/books')
+    if(req.body.image) {
+        bookData.image = req.body.image
+    }
+
+    let bookadded = await Book.create(bookData)
+    res.redirect('books/show.ejs')
 }
 
 module.exports = {

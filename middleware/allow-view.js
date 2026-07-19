@@ -5,5 +5,5 @@ const allowViewing = (req, res, next) => {
         res.locals.user = null
     }
     next()
-    module.exports = allowViewing
 }
+module.exports = allowViewing

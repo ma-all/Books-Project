@@ -10,7 +10,7 @@ const methodOverride = require('method-override') //for deleting
 const morgan = require('morgan')
 const session = require('express-session') //manage user sessions 
 const { MongoStore } = require('connect-mongo')
-const upload = require('./config/multer') //for the image
+const uploadimages = require('./config/multer') //for the image
 
 //needed to check if user is signed in or not
 const userIsSigned = require('./middleware/is-user-signed-in')
@@ -52,7 +52,7 @@ app.post('/auth/sign-in', authCtrl.signIn)
 //books
 //adding book
 app.get('/books/new', userIsSigned, bookCtrl.addBookForm)
-app.post('/books', userIsSigned, upload.single('image'), bookCtrl.addBook)
+app.post('/books', userIsSigned, uploadimages.single('image'), bookCtrl.addBook)
 
 app.get('/', (req, res) => {
     res.render('signed-home.ejs', {
