@@ -25,7 +25,7 @@ const bookSchema = new mongoose.Schema({
     },
     readingStatus: {
         type: String,
-        enum: ['currentRead', 'hasRead', 'toBeRead'],
+        enum: ['Currently Reading', 'Done Reading', 'To Be Read'],
         required: true,
     },
     user: {

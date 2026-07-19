@@ -1,1 +1,16 @@
-<h1>see if it works</h1>
+<%- include('../partials/navbar') %>
+
+    <h1>My Books</h1>
+    <ul>
+        <% allBooks.forEach((book) => { %>
+            <a href="/books/<%= book._id %>">
+                <li>
+                    <a href='/books/<%= book._id %>'><img src='<%= book.image.url %>' width="100"></a>
+                    <p> <%= book.title %></p>
+                </li>
+            </a>
+        <% }) %>
+    </ul>
+    
+</body>
+</html>

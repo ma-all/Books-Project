@@ -25,7 +25,6 @@ const addImg = (fileBuffer) => {
 
 const addBook = async (req, res) => {
     
-    
     const addedImg = await addImg(req.file.buffer)
 
     const bookData = {}
@@ -52,6 +51,14 @@ const index = async (req, res) => {
     res.render('books/index.ejs', {allBooks})
 }
 
+const showBook = async (req, res) => {
+    const bookFound = await Book.findById(req.params.bookId).populate('user')
+
+    res.render('books/show.ejs', {
+        bookFound,
+    })
+}
+
 module.exports = {
-    addBookForm, addBook, index,
+    addBookForm, addBook, index, showBook,
 }
