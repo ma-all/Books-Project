@@ -26,7 +26,7 @@ const signUp = async (req, res) => {
         _id: user._id
     }
     req.session.save(()=>{
-        res.redirect('signed-home.ejs')
+        res.redirect('/dashboard')
     })
 }
 
@@ -52,7 +52,7 @@ const signIn = async (req, res) => {
         _id: allowUser._id
     }
     req.session.save(()=> {
-        res.redirect('/dashboard.ejs')
+        res.redirect('/dashboard')
     })
 
 }

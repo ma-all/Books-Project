@@ -52,11 +52,6 @@ app.post('/auth/sign-in', authCtrl.signIn)
 //sign out
 app.delete('/auth/sign-out', authCtrl.signOut)
 
-//dashboard
-app.get('/dashboard', userIsSigned, async (req, res) => {
-    res.render('dashboard.ejs')
-})
-
 //books
 //adding book
 app.get('/books/new', userIsSigned, bookCtrl.addBookForm)
@@ -93,10 +88,22 @@ app.get('/books/:bookId/reviews', userIsSigned, reviewCtrl.showReview)
 //faves delete
 app.delete('/books/:bookId/favorites', userIsSigned, bookCtrl.removeFave)
 
+//dashboard
+app.get('/dashboard', userIsSigned, async (req, res) => {
+    res.render('dashboard.ejs', {
+        user: req.session.user,
+    })
+})
 
 app.get('/', (req, res) => {
-    res.render('dashboard.ejs', {
+    res.render('home.ejs', {
         user: req.session.user
+    })
+})
+
+app.delete('/', (req, res) => {
+    res.render('home.ejs', {
+        user: null
     })
 })
 
