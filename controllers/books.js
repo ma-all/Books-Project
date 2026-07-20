@@ -1,6 +1,7 @@
 const Book = require('../models/book')
 const cloudinary = require('../config/cloudinary')
 const uploadimages = require('../config/multer')
+const Review = require('../models/review')
 
 const addBookForm = (req, res) => {
     res.render('books/new.ejs')
@@ -51,8 +52,6 @@ const index = async (req, res) => {
     const allBooks = await Book.find({user: req.session.user._id}).populate('user')
     const selectReadingStatus = req.body?.status
 
-    console.log(selectReadingStatus)
-
     let displayBooks = allBooks
     if(selectReadingStatus && selectReadingStatus !== 'everyBook') {
         displayBooks = allBooks.filter(
@@ -69,9 +68,11 @@ const index = async (req, res) => {
 
 const showBook = async (req, res) => {
     const bookFound = await Book.findById(req.params.bookId).populate('user')
+    const reviews = await Review.find({book: req.params.bookId}).populate('userRev')
 
     res.render('books/show.ejs', {
         bookFound,
+        reviews,
     })
 }
 

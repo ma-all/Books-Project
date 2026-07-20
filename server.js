@@ -73,6 +73,7 @@ app.delete('/books/:bookId', userIsSigned, bookCtrl.removeBook)
 //reviews
 //add review
 app.post('/books/:bookId/reviews', userIsSigned, reviewCtrl.reviewBook)
+app.get('/books/:bookId/reviews', userIsSigned, reviewCtrl.showReview)
 
 app.get('/', (req, res) => {
     res.render('signed-home.ejs', {
