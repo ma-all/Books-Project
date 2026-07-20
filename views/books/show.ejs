@@ -15,12 +15,23 @@
     </form>
 
     <% if (bookFound.readingStatus === 'Done Reading') { %>
-        <section>
-            <p>Add Review:</p>
-            <form>
-                <textarea name="text" rows="3" required></textarea>
-                <button type="submit">Post Review</button>
-            </form>
+        <section id="reviewSection">
+            <div>
+                <p>Add Review:</p>
+                <form action="/books/<%= bookFound._id %>/reviews" method="post">
+                    <label>Rating:</label>
+                    <select name="rating" id="rating" required>
+                        <option value="five">⭐⭐⭐⭐⭐</option>
+                        <option value="four">⭐⭐⭐⭐</option>
+                        <option value="three">⭐⭐⭐</option>
+                        <option value="two">⭐⭐</option>
+                        <option value="one">⭐</option>
+                    </select>
+                    <br>
+                    <textarea name="comment" id="comment" rows="3" required></textarea>
+                    <button type="submit">Post Review</button>
+                </form>
+            </div>
         </section>
     <% } %>
     

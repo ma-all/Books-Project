@@ -5,7 +5,13 @@ const reviewSchema = new mongoose.Schema({
         required: true,
     },
     rating: {
-        type: Number,
+        type: String,
+        enum: ['five', 'four', 'three', 'two', 'one'],
+        required: true,
+    },
+    userRev: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
         required: true,
     }
 })

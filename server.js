@@ -19,6 +19,7 @@ const allowViewing = require('./middleware/allow-view')
 
 const authCtrl = require('./controllers/auth')
 const bookCtrl = require('./controllers/books')
+const reviewCtrl = require('./controllers/reviews')
 
 const port = process.env.PORT ? process.env.PORT : '3000'
 
@@ -68,6 +69,10 @@ app.put('/books/:bookId', userIsSigned, uploadimages.single('image'), bookCtrl.u
 
 //deleting
 app.delete('/books/:bookId', userIsSigned, bookCtrl.removeBook)
+
+//reviews
+//add review
+app.post('/books/:bookId/reviews', userIsSigned, reviewCtrl.reviewBook)
 
 app.get('/', (req, res) => {
     res.render('signed-home.ejs', {
