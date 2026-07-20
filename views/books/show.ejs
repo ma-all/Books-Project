@@ -13,6 +13,16 @@
     <form action="/books/<%= bookFound._id %>?_method=DELETE" method="post">
         <button type="submit">Remove <%= bookFound.title %></button>
     </form>
+
+    <% if (bookFound.readingStatus === 'Done Reading') { %>
+        <section>
+            <p>Add Review:</p>
+            <form>
+                <textarea name="text" rows="3" required></textarea>
+                <button type="submit">Post Review</button>
+            </form>
+        </section>
+    <% } %>
     
 </body>
 </html>
