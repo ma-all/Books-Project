@@ -1,1 +1,23 @@
-<h1>test it</h1>
+<%- include('../partials/navbar') %>
+    
+    <p>My Reviews</p>
+
+    <% if (reviews && reviews.length > 0) { %>
+        <% reviews.forEach(review => {  %>
+            <p>Title: <%= bookFound.title %></p>
+            
+            <p>Rating: </p>
+            <% if(review.rating === 'five') { %> ⭐⭐⭐⭐⭐
+            <% } else if (review.rating === 'four') { %> ⭐⭐⭐⭐
+            <% } else if (review.rating === 'three') { %> ⭐⭐⭐
+            <% } else if (review.rating === 'two') { %> ⭐⭐
+            <% } else if (review.rating === 'one') { %> ⭐
+            <% } %>
+
+            <p>Comment: <%= review.comment %></p>
+        <% }) %>
+    <% } else { %>
+        <p> You have not reviewed any book.</p>
+    <% } %>
+</body>
+</html>
