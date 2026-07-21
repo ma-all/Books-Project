@@ -2,19 +2,23 @@
     
     <p>My Reviews</p>
 
-    <% if (reviews && reviews.length > 0) { %>
-        <% reviews.forEach(review => {  %>
-            <p>Review of: <%= review.book.title %></p>
-            <p>Rating: </p>
-            <% if(review.rating === 'five') { %> ⭐⭐⭐⭐⭐
-            <% } else if (review.rating === 'four') { %> ⭐⭐⭐⭐
-            <% } else if (review.rating === 'three') { %> ⭐⭐⭐
-            <% } else if (review.rating === 'two') { %> ⭐⭐
-            <% } else if (review.rating === 'one') { %> ⭐
-            <% } %>
+    <div class="review-section">
+        <% if (reviews && reviews.length > 0) { %>
+            <% reviews.forEach(review => {  %>
+                <div class="review-card">
+                    <p>Review of: <%= review.book.title %></p>
+                    <p>Rating: </p>
+                    <% if(review.rating === 'five') { %> ⭐⭐⭐⭐⭐
+                    <% } else if (review.rating === 'four') { %> ⭐⭐⭐⭐
+                    <% } else if (review.rating === 'three') { %> ⭐⭐⭐
+                    <% } else if (review.rating === 'two') { %> ⭐⭐
+                    <% } else if (review.rating === 'one') { %> ⭐
+                    <% } %>
 
-            <p>Comment: <%= review.comment %></p>
+                    <p>Comment: <%= review.comment %></p>
+                </div>
         <% }) %>
+    </div>
     <% } else { %>
         <p> You have not reviewed any book.</p>
     <% } %>
