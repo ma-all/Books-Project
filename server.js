@@ -101,6 +101,7 @@ app.get('/', (req, res) => {
     })
 })
 
+//user signs out
 app.delete('/', (req, res) => {
     res.render('home.ejs', {
         user: null

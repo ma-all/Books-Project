@@ -17,7 +17,7 @@
     </form>
 
     <!--fave-->
-    <% if (!bookFound.favoriteByUser && !bookFound.favoriteByUser.includes(req.session.user._id)) { %>
+    <% if (bookFound.favoriteByUser && bookFound.favoriteByUser.includes(req.session.user._id)) { %>
         <p>Book is already added to favorites!</p>
     <% } else { %>
         <form action="/books/<%= bookFound._id %>/favorites" method="post">
