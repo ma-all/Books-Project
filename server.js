@@ -11,6 +11,7 @@ const morgan = require('morgan')
 const session = require('express-session') //manage user sessions 
 const { MongoStore } = require('connect-mongo')
 const uploadimages = require('./config/multer') //for the image
+const path = require('path')
 
 //needed to check if user is signed in or not
 const userIsSigned = require('./middleware/is-user-signed-in')
@@ -41,6 +42,9 @@ app.use(session({ //handles the session
 }))
 
 app.use(allowViewing)
+
+//css
+app.use(express.static(path.join(__dirname, "public")))
 
 //auth  
 //sign up

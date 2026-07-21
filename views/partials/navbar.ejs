@@ -4,16 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Tracker</title>
+    <link rel="stylesheet" href="stylesheets/style.css">
 </head>
 <body>
     <nav>
         <ul>
-            <li><a href="/dashboard">Dashboard</a></li>
-            <li><a href="/books">My Books</a></li>
-            <li>
+            <!-- <li class="nav-style"> -->
+                <a href="/dashboard" class="link-style">Dashboard</a>
+            <!-- </li> -->
+            <!-- <li class="nav-style"> -->
+                <a href="/books" class="link-style">My Books</a>
+            <!-- </li> -->
+            <!-- <li class="nav-style"> -->
                 <form action="/auth/sign-out?_method=DELETE" method="post">
-                    <button type="submit">Sign Out</button>
+                    <button type="submit" class="signout-btn">Sign Out</button>
                 </form>
-            </li>
+            <!-- </li> -->
         </ul>
     </nav>

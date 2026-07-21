@@ -1,8 +1,8 @@
 <%- include('../partials/navbar') %>
 
-    <h1>My Books</h1>
+    <h1 class="centering">My Books</h1>
 
-    <form action="/books" method="post">
+    <form action="/books" method="post" class="centering">
         <label>Reading Status: </label>
         <select name="status" id="status">
             <option value="everyBook">All Books</option>
@@ -25,20 +25,25 @@
         <button type="submit">Filter</button>
     </form>
 
-    <a href="/books/new">Add New Book</a>
+    <a href="/books/new" class="centering">Add New Book</a>
     
     <% if(allBooks.length === 0) { %>
-        <p>You don't have any books!</p>
+        <p class="centering">You don't have any books!</p>
     <% } else { %>
         <ul>
-            <% allBooks.forEach((book) => { %>
-                <a href="/books/<%= book._id %>">
-                    <li>
-                        <a href='/books/<%= book._id %>'><img src='<%= book.image.url %>' width="100"></a>
-                        <p> <%= book.title %></p>
-                    </li>
-                </a>
-            <% }) %>
+            <div class="book-section">
+                <% allBooks.forEach((book) => { %>
+                    <a href="/books/<%= book._id %>">
+                        <!-- <li> -->
+                            <div class="book-card">
+                                <a href='/books/<%= book._id %>'><img src='<%= book.image.url %>' width="100">
+                                    <p> <%= book.title %></p>
+                                </a>
+                            </div>
+                        <!-- </li> -->
+                    </a>
+                <% }) %>
+            </div>
         </ul>
     <% } %>
 </body>
