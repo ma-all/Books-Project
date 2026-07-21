@@ -1,39 +1,46 @@
 <%- include('../partials/navbar') %>
 <center>
     <h1>Add a New Book</h1>
-    
-    <form action="/books/create" method="post" enctype="multipart/form-data">
-        <label>Title: </label>
-        <input type="text" name="title"/>
+    <div class="new-part">
+        <form action="/books/create" method="post" enctype="multipart/form-data">
+            <label>Title: </label>
+            <br/>
+            <input type="text" name="title"/>
 
-        <br>
+            <br/>
 
-        <label>Author: </label>
-        <input type="text" name="author"/>
+            <label>Author: </label>
+            <br/>
+            <input type="text" name="author"/>
 
-        <br>
+            <br/>
 
-        <label>Pages: </label>
-        <input type="number" name="pages" min="0"/>
+            <label>Pages: </label>
+            <br/>
+            <input type="number" name="pages" min="0"/>
 
-        <br>
+            <br/>
 
-        <label>Reading Status: </label>
-        <select name="readingStatus" id="readingStatus">
-            <option value="Currently Reading">Currently Reading</option>
-            <option value="Done Reading">Done Reading</option>
-            <option value="To Be Read">To Be Read</option>
-        </select>
+            <label>Reading Status: </label>
+            <br/>
+            <select name="readingStatus" id="readingStatus">
+                <option value="Currently Reading">Currently Reading</option>
+                <option value="Done Reading">Done Reading</option>
+                <option value="To Be Read">To Be Read</option>
+            </select>
 
-        <br>
+            <br/>
 
-        <label>Image: </label>
-        <input type="file" name="image" accept="image/jpeg,image/png" required/>
+            <label>Image: </label>
+            <br/>
+            <input type="file" name="image" accept="image/jpeg,image/png" required/>
 
-        <br>
+            <br/>
+            <br/>
 
-        <button type="submit">Submit</button>
-    </form>
+            <button type="submit" class="newBtn">Submit</button>
+        </form>
+    </div>
 </center>
 </body>
 </html>

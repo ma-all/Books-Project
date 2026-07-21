@@ -1,52 +1,78 @@
 <%- include('../partials/navbar') %>
-<center>
-    <h1><%= bookFound.title %></h1>
-    <img src="<%= bookFound.image.url %>" width="100" class="book-img">
-    <p>Author: <%= bookFound.author %></p>
-    <p>Pages: <%= bookFound.pages %></p>
-    <p>Reading Status: <%= bookFound.readingStatus %></p>
-    
-    <!--edit-->
-    <a href="/books/<%= bookFound._id %>/edit">
-        <button type="submit">Edit <%= bookFound.title %></button>
-    </a>
+<!-- <center> -->
+    <div class="show-page">
+        <center><h1 class="book-title"><%= bookFound.title %></h1></center>
+        
+        <div class="details-part">
+            <div class="details-left">
+                <p>Author: <%= bookFound.author %></p>
+                <p>Pages: <%= bookFound.pages %></p>
+                <p>Reading Status: <%= bookFound.readingStatus %></p>
 
-    <!--delete-->
-    <form action="/books/<%= bookFound._id %>?_method=DELETE" method="post">
-        <button type="submit">Remove <%= bookFound.title %></button>
-    </form>
+                <!--fave-->
+                <div class="favorite-part">
+                    <% if (bookFound.favoriteByUser && bookFound.favoriteByUser.includes(req.session.user._id)) { %>
+                        <p class="fav">Book is already added to favorites!</p>
+                    <% } else { %>
+                        <form action="/books/<%= bookFound._id %>/favorites" method="post">
+                            <button type="submit" class="favBtn fav">Add to Favorites!</button>
+                        </form>
+                    <% } %>
+                </div>
 
-    <!--fave-->
-    <% if (bookFound.favoriteByUser && bookFound.favoriteByUser.includes(req.session.user._id)) { %>
-        <p class="centering">Book is already added to favorites!</p>
-    <% } else { %>
-        <form action="/books/<%= bookFound._id %>/favorites" method="post">
-            <button type="submit">Add to Favorites!</button>
-        </form>
-    <% } %>
+            </div>
 
-    <% if (bookFound.readingStatus === 'Done Reading') { %>
-        <section id="reviewSection">
-            <div>
-                <p>Add Review:</p>
+            <div class="details-right">
+                <img src="<%= bookFound.image.url %>" width="100" class="book-img">
+            </div>
+        </div>
+        
+        <div class="edit-delete-btn">
+        <!--edit-->
+            <a href="/books/<%= bookFound._id %>/edit">
+                <button type="submit" class="editBtn">Edit <%= bookFound.title %></button>
+            </a>
+
+            <!--delete-->
+            <form action="/books/<%= bookFound._id %>?_method=DELETE" method="post">
+                <button type="submit" class="deleteBtn">Remove <%= bookFound.title %></button>
+            </form>
+        </div>
+            
+
+        <% if (bookFound.readingStatus === 'Done Reading') { %>
+            <div class="review-part">
+                <center><p>Add Review:</p></center>
                 <form action="/books/<%= bookFound._id %>/reviews" method="post">
-                    <label>Rating:</label>
-                    <select name="rating" id="rating" required>
-                        <option value="five">⭐⭐⭐⭐⭐</option>
-                        <option value="four">⭐⭐⭐⭐</option>
-                        <option value="three">⭐⭐⭐</option>
-                        <option value="two">⭐⭐</option>
-                        <option value="one">⭐</option>
-                    </select>
+                    <div class="review-form">
+                        <label>Rating:</label>
+                        <select name="rating" id="rating" required>
+                            <option value="five">⭐⭐⭐⭐⭐</option>
+                            <option value="four">⭐⭐⭐⭐</option>
+                            <option value="three">⭐⭐⭐</option>
+                            <option value="two">⭐⭐</option>
+                            <option value="one">⭐</option>
+                        </select>
+                    </div>
+
+                    <br/>
+
+                    <center><div>
+                        <label>Comment:</label>
+
+                        <br/>
+                        <br/>
+                        
+                        <textarea name="comment" id="comment" rows="3" required></textarea>
+                    </div></center>
+
                     <br>
-                    <br>
-                    <textarea name="comment" id="comment" rows="3" required></textarea>
-                    <br>
-                    <button type="submit">Post Review</button>
+
+                    <center><button type="submit" class="reviewBtn">Post Review</button></center>
                 </form>
             </div>
-        </section>
-    <% } %>
-</center>
+        <% } %>
+    </div>
+<!-- </center> -->
 </body>
 </html>

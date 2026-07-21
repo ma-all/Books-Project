@@ -9,25 +9,30 @@
 <body>
 
     <h1>Sign Up</h1>
+        <div class="signup">
+        <form action="/auth/sign-up" method="post">
+            <label> Enter Username: </label>
+            <br/>
+            <input type="text" name="username"/>
 
-    <form action="/auth/sign-up" method="post">
-        <label> Enter Username: </label>
-        <input type="text" name="username"/>
+            <br/>
 
-        <br>
+            <label> Enter Password: </label>
+            <br/>
+            <input type="password" name="password"/>
 
-        <label> Enter Password: </label>
-        <input type="password" name="password"/>
+            <br/>
 
-        <br>
+            <label> Confirm Password: </label>
+            <br/>
+            <input type="password" name="confirmPassword" />
 
-        <label> Confirm Password: </label>
-        <input type="password" name="confirmPassword" />
+            <br/>
+            <br/>
 
-        <br>
-
-        <button type="submit">Sign Up</button>
-    </form>
+            <button type="submit" class='sign-upBtn'>Sign Up</button>
+        </form>
+    </div>
     
 </body>
 </html>

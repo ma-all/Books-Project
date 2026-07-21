@@ -2,48 +2,58 @@
 <center>
     <h1>Edit <%= bookFound.title %></h1>
 
-    <form action="/books/<%= bookFound._id %>?_method=PUT" method="post" enctype="multipart/form-data">
-        <label>Title: </label>
-        <input type="text" name="title" value="<%= bookFound.title %>"/>
+    <br/>
 
-        <br>
+    <div class="edit-part">
+        <form action="/books/<%= bookFound._id %>?_method=PUT" method="post" enctype="multipart/form-data">
+            <label>Title: </label>
+            <br/>
+            <input type="text" name="title" value="<%= bookFound.title %>"/>
 
-        <label>Author: </label>
-        <input type="text" name="author" value="<%= bookFound.author %>"/>
+            <br/>
 
-        <br>
+            <label>Author: </label>
+            <br/>
+            <input type="text" name="author" value="<%= bookFound.author %>"/>
 
-        <label>Pages: </label>
-        <input type="number" name="pages" min="0" value="<%= bookFound.pages %>"/>
+            <br/>
 
-        <br>
+            <label>Pages: </label>
+            <br/>
+            <input type="number" name="pages" min="0" value="<%= bookFound.pages %>"/>
 
-        <label>Reading Status: </label>
-        <select name="readingStatus" id="readingStatus">
-            <option value="Currently Reading"
-                <% if(bookFound.readingStatus === 'Currently Reading') { %> selected <% } %> >
-                Currently Reading
-            </option>
+            <br/>
 
-            <option value="Done Reading"
-            <% if(bookFound.readingStatus === 'Done Reading') { %> selected <% } %> >
-                Done Reading
-            </option>
+            <label>Reading Status: </label>
+            <br/>
+            <select name="readingStatus" id="readingStatus">
+                <option value="Currently Reading"
+                    <% if(bookFound.readingStatus === 'Currently Reading') { %> selected <% } %> >
+                    Currently Reading
+                </option>
 
-            <option value="To Be Read"
-            <% if(bookFound.readingStatus === 'To Be Read') { %> selected <% } %> >
-                To Be Read</option>
-        </select>
+                <option value="Done Reading"
+                <% if(bookFound.readingStatus === 'Done Reading') { %> selected <% } %> >
+                    Done Reading
+                </option>
 
-        <br>
+                <option value="To Be Read"
+                <% if(bookFound.readingStatus === 'To Be Read') { %> selected <% } %> >
+                    To Be Read</option>
+            </select>
 
-        <label>Image: </label>
-        <input type="file" name="image" accept="image/jpeg,image/png" />
+            <br/>
 
-        <br>
+            <label>Image: </label>
+            <br/>
+            <input type="file" name="image" accept="image/jpeg,image/png" />
 
-        <button type="submit">Update Book</button>
-    </form>
+            <br/>
+            <br/>
+
+            <button type="submit" class="updateBtn">Update Book</button>
+        </form>
+    </div>
 </center>   
 </body>
 </html>
