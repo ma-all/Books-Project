@@ -2,10 +2,10 @@
 Books Tracker
 
 ## Overview
-A booking tracking app that allows you to add books, view, update, and remove books.
+A books tracking website that allows you to add books, view, update, and remove books.
 
 ## Screenshot
-![alt text](image.png)
+![alt text](image-1.png)
 
 ## Technologies Used
 - **CSS**
