@@ -34,6 +34,7 @@ const addBook = async (req, res) => {
     bookData.title = req.body.title
     bookData.author = req.body.author
     bookData.pages = req.body.pages
+    bookData.genre = req.body.genre
     bookData.readingStatus = req.body.readingStatus
     bookData.image = {
         url: addedImg.secure_url,
@@ -62,7 +63,7 @@ const index = async (req, res) => {
     }
     res.render('books/index.ejs', {
         allBooks: displayBooks,
-        selectReadingStatus: selectReadingStatus || 'everyBook'
+        selectReadingStatus: selectReadingStatus || 'everyBook',
     })
 }
 
@@ -92,6 +93,7 @@ const updateBook = async (req, res) => {
     bookFound.title = req.body.title
     bookFound.author = req.body.author
     bookFound.pages = req.body.pages
+    bookFound.genre = req.body.genre
     bookFound.readingStatus = req.body.readingStatus
 
     if(req.file) {
@@ -140,8 +142,41 @@ const removeBook = async (req, res) => {
     }
 }
 
+// make a search funciont
+// try console logging req.query
+//try to filter where title: req.query.title
+const search = async(req, res) => {
+    const allBooks = await Book.find({user: req.session.user._id}).populate('user')
+    const selectReadingStatus = req.body?.status
+    let displayBooks = allBooks
+    if(selectReadingStatus && selectReadingStatus !== 'everyBook') {
+        displayBooks = allBooks.filter(
+            book =>  {
+                return book && book.readingStatus === selectReadingStatus
+            }
+        )
+    }
+    
+
+    const filterBook = req.query?.title || ''
+    if(filterBook != ''){
+        displayBooks = displayBooks.filter(
+            book => {
+                return book && book.title && book.title.toLocaleLowerCase().includes(filterBook.toLocaleLowerCase())
+            }
+        )
+    }
+
+    res.render('books/index.ejs', {
+        allBooks: displayBooks,
+        selectReadingStatus: selectReadingStatus || 'everyBook',
+        query: req.query || {},
+    })
+
+}
+
 module.exports = {
-    addBookForm, addBook, index, showBook, editBook, updateBook, removeBook, addFave, showFave, removeFave,
+    addBookForm, addBook, index, showBook, editBook, updateBook, removeBook, addFave, showFave, removeFave, search,
 }
 
 //CODE GRAVEYARD
@@ -153,3 +188,10 @@ module.exports = {
     // bookData.pages = req.body.pages
     // bookData.readingStatus = req.body.readingStatus
     // await Book.findByIdAndUpdate(req.params.bookId, bookData)
+
+    // const searchTitle = req.query.search
+    // let filterBook = { user: req.session.user._id}
+    // if(searchTitle) {
+    //     filter.title = 
+    // }
+    // const searchedbooks = await Book.find(filterBook)

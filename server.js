@@ -68,6 +68,8 @@ app.get('/books/reviews', userIsSigned, reviewCtrl.showReview)
 app.get('/books', userIsSigned, bookCtrl.index)
 //for status
 app.post('/books', userIsSigned, bookCtrl.index)
+//search
+app.get('/search', userIsSigned, bookCtrl.search)
 
 //favorites
 app.post('/books/:bookId/favorites', userIsSigned, bookCtrl.addFave)

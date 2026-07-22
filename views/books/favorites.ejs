@@ -7,10 +7,12 @@
                 <% faveBook.forEach(book => {  %>
                     <div class="favorite-card">
                     <p>Title: <%= book.title %></p>
-                    <a href="/books/<%= book._id %>">View Book Details</a>
+                    <a href="/books/<%= book._id %>" class="details-link">View Book Details</a>
+
+                    <br/>
 
                     <form action="/books/<%= book._id %>/favorites?_method=DELETE" method="post">
-                        <button type="submit">Remove from favorites</button>
+                        <button type="submit" class="favBtn">Remove</button>
                     </form>
                 </div>
                 <% }) %>

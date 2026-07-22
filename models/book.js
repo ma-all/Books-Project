@@ -28,6 +28,11 @@ const bookSchema = new mongoose.Schema({
         enum: ['Currently Reading', 'Done Reading', 'To Be Read'],
         required: true,
     },
+    genre: {
+        type: String,
+        enum:['Classic Literature', 'Contemporary', 'Fantasy', 'Mystery Thriller', 'Science Fiction', 'Non Fiction'],
+        required: true,
+    },
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',

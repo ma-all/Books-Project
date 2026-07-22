@@ -1,16 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Platypi:ital,wght@0,300..800;1,300..800&display=swap');
 
 body {
-    background-color: #f7f3e9;
-    /* min-height: 100vw; */
+    background-color: #E8ECEF;
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
     font-family: "Platypi", serif;
+    margin: 0;
+    color: #1C2B48;
 }
 
 nav {
-    background-color: #839775;
+    background-color: #1C2B48;
 }
 
 nav ul {
@@ -34,18 +34,30 @@ nav li {
 
 .link-style:hover {
     text-decoration: underline;
-    color:#d0e4c1;
+    color: #c4D8E5;
 }
 
 .signout-btn {
     background: none;
     border: none;
     cursor: pointer;
-    color: red;
+    color: white;
     display: flex;
 }
 
-.book-section, .favorite-section, .review-section {
+.signout-btn:hover {
+    color: #c4D8E5;
+    text-decoration: underline;
+}
+
+.title-search {
+    justify-content: center;
+    align-items: center;
+}
+
+.book-section,
+.favorite-section,
+.review-section {
     display: flex;
     flex-wrap: wrap;
     gap: 25px;
@@ -54,10 +66,11 @@ nav li {
     justify-content: center;
     align-items: center;
     flex-wrap: center;
-    min-height: 80vh;
 }
 
-.book-card, .favorite-card, .review-card {
+.book-card,
+.favorite-card,
+.review-card {
     display: flex;
     flex-direction: column;
     width: 200px;
@@ -65,10 +78,10 @@ nav li {
     align-items: center;
     text-align: center;
     text-decoration: none;
-    border: 2px solid #839775;
+    border: 2px solid #1C2B48;
     border-radius: 20px;
     justify-content: center;
-    background-color: #e6e1d4;
+    background-color: #CDD8E1;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -88,23 +101,6 @@ nav li {
     text-align: center;
     display: flex;
 }
-
-/* .review-card {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    align-items: left;
-    text-align: left;
-    text-decoration: none;
-    border: 2px solid #839775;
-    border-radius: 20px;
-    justify-content: center;
-    background-color: #e6e1d4;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 10px;
-} */
 
 .show-page {
     margin: 40px auto;
@@ -140,7 +136,7 @@ nav li {
     gap: 10px;
 }
 
-.details-right img{
+.details-right img {
     border-radius: 15px;
     object-fit: cover;
     width: 250px;
@@ -154,18 +150,21 @@ nav li {
     gap: 30px;
 }
 
-.editBtn, .deleteBtn {
-    border: 1px solid #839775;
+.editBtn,
+.deleteBtn {
+    border: 1px solid #1C2B48;
     border-radius: 8px;
-    background-color: #becfb1 ;
+    background-color: #CDD8E1;
     font-size: 15px;
     padding: 8px;
     font-family: "Platypi", serif;
     cursor: pointer;
 }
 
-.editBtn:hover, .deleteBtn:hover {
-    background-color: #839775 ;
+.editBtn:hover,
+.deleteBtn:hover {
+    background-color: #1C2B48;
+    color: #E8ECEF;
 }
 
 .fav {
@@ -179,10 +178,10 @@ nav li {
 }
 
 .review-part {
-    background-color: #e6e1d4;
+    background-color: #CDD8E1;
     padding: 30px;
     margin-top: 30px;
-    border: 2px solid #839775;
+    border: 2px solid #1C2B48;
     border-radius: 16px;
     margin-top: 40px;
     max-width: 900px;
@@ -199,7 +198,7 @@ nav li {
 }
 
 #comment {
-    border: 1px solid #839775;
+    border: 1px solid #1C2B48;
     max-width: 480px;
     min-height: 100px;
     width: 100%;
@@ -209,22 +208,28 @@ nav li {
     box-sizing: border-box;
 }
 
-.reviewBtn, .updateBtn, .newBtn{
-    border: 1px solid #839775;
+.reviewBtn,
+.updateBtn,
+.newBtn, .favBtn {
+    border: 1px solid #1C2B48;
     border-radius: 8px;
-    background-color: #becfb1 ;
+    background-color: #E8ECEF;
     font-size: 15px;
     padding: 8px;
     font-family: "Platypi", serif;
     cursor: pointer;
 }
 
-.reviewBtn:hover, .updateBtn:hover, .newBtn:hover {
-    background-color: #839775 ;
+.reviewBtn:hover,
+.updateBtn:hover,
+.newBtn:hover, .favBtn:hover {
+    background-color: #1C2B48;
+    color: #E8ECEF;
 }
 
-.edit-part, .new-part {
-    border: 2px solid #839775;
+.edit-part,
+.new-part {
+    border: 2px solid #1C2B48;
     border-radius: 16px;
     text-align: center;
     padding: 30px;
@@ -234,4 +239,19 @@ nav li {
 
 .title-size {
     font-size: 25px;
+}
+
+.details-link {
+    text-decoration: none;
+    color: #1C2B48;
+}
+
+.details-link:hover {
+    text-decoration: underline;
+    color: #717f9a;
+}
+
+.nolines {
+    text-decoration: none;
+    font-size: 20px;
 }

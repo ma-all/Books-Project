@@ -25,6 +25,11 @@
         <button type="submit">Filter</button>
     </form>
 
+    <form action="/search" method="get">
+        <center><input type="text" name="title" class="title-search" placeholder="Search By Title">
+        <button type="submit">Search</button></center>
+    </form>
+
     <a href="/books/new" class="centering">Add New Book</a>
     
     <% if(allBooks.length === 0) { %>
