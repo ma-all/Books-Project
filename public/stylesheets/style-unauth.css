@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Platypi:ital,wght@0,300..800;1,300..800&display=swap');
 
 body {
-    background-color: #E8ECEF;
+    background-color: #F2F5F7;
     display: flex;
     flex-direction: column;
     font-family: "Platypi", serif;
@@ -9,6 +9,7 @@ body {
     align-items: center;
     min-height: 100vh;
     color: #031332;
+    overflow: hidden;
 }
 
 .sign-inBtn, .sign-upBtn {
@@ -21,43 +22,42 @@ body {
     cursor: pointer;
 }
 
-.sign-upBtn {
-    color: #1C2B48;
-}
-
-.sign-inBtn:hover {
+.sign-inBtn:hover, .sign-upBtn:hover {
     background-color: #1C2B48;
     color: white;
-}
-
- .sign-upBtn:hover {
-     text-decoration: underline;
+    text-decoration: underline;
 }
 
 .signup, .signin {
     border: 2px solid #1C2B48;
     border-radius: 16px;
     text-align: center;
-    padding: 50px;
-    margin: 40px auto;
+    padding: 40px;
+    margin: 0 auto;
     max-width: 450px;
-    background-color: #d9e1e8;
+    background-color: #E8ECEF;
 }
 
 .home-part {
     border: 2px solid #1C2B48;
     border-radius: 16px;
     max-width: 450px;
-    padding: 50px;
+    padding: 40px;
     margin: 0 auto;
     background-color: white;
 }
 
-.sign-upLink {
-    text-decoration: none;
-    color: #1C2B48;
+.home-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin: auto;
+    width: 100%;
 }
 
-.sign-upLink:hover {
-    text-decoration: underline;
+.signin-Link {
+    text-decoration: none;
+    color: #1C2B48;
 }
