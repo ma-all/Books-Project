@@ -142,9 +142,6 @@ const removeBook = async (req, res) => {
     }
 }
 
-// make a search funciont
-// try console logging req.query
-//try to filter where title: req.query.title
 const search = async(req, res) => {
     const allBooks = await Book.find({user: req.session.user._id}).populate('user')
     const selectReadingStatus = req.body?.status
@@ -178,20 +175,3 @@ const search = async(req, res) => {
 module.exports = {
     addBookForm, addBook, index, showBook, editBook, updateBook, removeBook, addFave, showFave, removeFave, search,
 }
-
-//CODE GRAVEYARD
-//Update Book Function:
-    // let bookData = {}
-    // bookData.user = req.session.user._id
-    // bookData.title = req.body.title
-    // bookData.author = req.body.author
-    // bookData.pages = req.body.pages
-    // bookData.readingStatus = req.body.readingStatus
-    // await Book.findByIdAndUpdate(req.params.bookId, bookData)
-
-    // const searchTitle = req.query.search
-    // let filterBook = { user: req.session.user._id}
-    // if(searchTitle) {
-    //     filter.title = 
-    // }
-    // const searchedbooks = await Book.find(filterBook)

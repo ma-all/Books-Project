@@ -1,4 +1,3 @@
-//loads .env
 const dotenv = require('dotenv')
 dotenv.config()
 
@@ -6,16 +5,15 @@ const express = require('express')
 const app = express()
 
 const mongoose = require('mongoose') 
-const methodOverride = require('method-override') //for deleting
+const methodOverride = require('method-override') 
 const morgan = require('morgan')
-const session = require('express-session') //manage user sessions 
+const session = require('express-session') 
 const { MongoStore } = require('connect-mongo')
-const uploadimages = require('./config/multer') //for the image
+const uploadimages = require('./config/multer') 
 const path = require('path')
 
-//needed to check if user is signed in or not
 const userIsSigned = require('./middleware/is-user-signed-in')
-//for viewing
+
 const allowViewing = require('./middleware/allow-view')
 
 const authCtrl = require('./controllers/auth')
@@ -32,7 +30,7 @@ mongoose.connection.on('connected', () => {
 app.use(express.urlencoded({ extended: false}))
 app.use(methodOverride('_method'))
 app.use(morgan('dev'))
-app.use(session({ //handles the session
+app.use(session({ 
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
@@ -43,58 +41,44 @@ app.use(session({ //handles the session
 
 app.use(allowViewing)
 
-//css
 app.use(express.static(path.join(__dirname, "public")))
 
-//auth  
-//sign up
 app.get('/auth/sign-up', authCtrl.signUpForm) 
 app.post('/auth/sign-up', authCtrl.signUp)
-//sign in
+
 app.get('/auth/sign-in', authCtrl.signInForm)
 app.post('/auth/sign-in', authCtrl.signIn)
-//sign out
+
 app.delete('/auth/sign-out', authCtrl.signOut)
 
-//books
-//adding book
 app.get('/books/new', userIsSigned, bookCtrl.addBookForm)
 app.post('/books/create', userIsSigned, uploadimages.single('image'), bookCtrl.addBook)
 
-//reviews
 app.get('/books/reviews', userIsSigned, reviewCtrl.showReview)
 
-//displays all books
+
 app.get('/books', userIsSigned, bookCtrl.index)
-//for status
+
 app.post('/books', userIsSigned, bookCtrl.index)
-//search
+
 app.get('/search', userIsSigned, bookCtrl.search)
 
-//favorites
 app.post('/books/:bookId/favorites', userIsSigned, bookCtrl.addFave)
 app.get('/books/favorites', userIsSigned, bookCtrl.showFave)
 
-
-//shows a book details
 app.get('/books/:bookId', userIsSigned, bookCtrl.showBook)
 
-//editing
 app.get('/books/:bookId/edit', userIsSigned, bookCtrl.editBook)
 app.put('/books/:bookId', userIsSigned, uploadimages.single('image'), bookCtrl.updateBook)
 
-//deleting
 app.delete('/books/:bookId', userIsSigned, bookCtrl.removeBook)
 
-//reviews
-//add reviews
 app.post('/books/:bookId/reviews', userIsSigned, reviewCtrl.reviewBook)
 app.get('/books/:bookId/reviews', userIsSigned, reviewCtrl.showReview)
 
-//faves delete
 app.delete('/books/:bookId/favorites', userIsSigned, bookCtrl.removeFave)
 
-//dashboard
+
 app.get('/dashboard', userIsSigned, async (req, res) => {
     res.render('dashboard.ejs', {
         user: req.session.user,
@@ -107,7 +91,6 @@ app.get('/', (req, res) => {
     })
 })
 
-//user signs out
 app.delete('/', (req, res) => {
     res.render('home.ejs', {
         user: null

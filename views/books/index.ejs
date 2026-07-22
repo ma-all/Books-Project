@@ -1,9 +1,10 @@
 <%- include('../partials/navbar') %>
 
+    <title>Books</title>
+
     <h1 class="centering">My Books</h1>
 
     <form action="/books" method="post" class="centering">
-        <!-- <label>Reading Status: </label> -->
         <select name="status" id="status">
             <option value="everyBook">All Books</option>
             <option value="Currently Reading"
@@ -39,13 +40,11 @@
             <div class="book-section">
                 <% allBooks.forEach((book) => { %>
                     <a href="/books/<%= book._id %>">
-                        <!-- <li> -->
                             <div class="book-card">
-                                <a href='/books/<%= book._id %>'><img src='<%= book.image.url %>' width="100">
+                                <a href='/books/<%= book._id %>'><img src='<%= book.image.url %>' width="100" alt="book image">
                                     <p> <%= book.title %></p>
                                 </a>
                             </div>
-                        <!-- </li> -->
                     </a>
                 <% }) %>
             </div>

@@ -1,5 +1,7 @@
 <%- include('../partials/navbar') %>
-<!-- <center> -->
+
+    <title>Book Details</title>
+    
     <div class="show-page">
         <center><h1 class="book-title"><%= bookFound.title %></h1></center>
         
@@ -10,7 +12,6 @@
                 <p>Genre: <%= bookFound.genre %></p>
                 <p>Reading Status: <%= bookFound.readingStatus %></p>
 
-                <!--fave-->
                 <div class="favorite-part">
                     <% if (bookFound.favoriteByUser && bookFound.favoriteByUser.includes(req.session.user._id)) { %>
                         <p class="fav">Book is already added to favorites!</p>
@@ -24,17 +25,16 @@
             </div>
 
             <div class="details-right">
-                <img src="<%= bookFound.image.url %>" width="100" class="book-img">
+                <img src="<%= bookFound.image.url %>" width="100" class="book-img" alt="book image">
             </div>
         </div>
         
         <div class="edit-delete-btn">
-        <!--edit-->
+
             <a href="/books/<%= bookFound._id %>/edit">
                 <button type="submit" class="editBtn">Edit <%= bookFound.title %></button>
             </a>
 
-            <!--delete-->
             <form action="/books/<%= bookFound._id %>?_method=DELETE" method="post">
                 <button type="submit" class="deleteBtn">Remove <%= bookFound.title %></button>
             </form>
@@ -74,6 +74,6 @@
             </div>
         <% } %>
     </div>
-<!-- </center> -->
+
 </body>
 </html>
