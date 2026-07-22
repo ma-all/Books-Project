@@ -259,3 +259,18 @@ nav li {
 .nolines:hover {
     color:#717f9a;
 }
+
+.filterBtn, .searchBtn {
+    border: 1px solid #1C2B48;
+    border-radius: 8px;
+    background-color: #E8ECEF;
+    font-size: 15px;
+    padding: 4px;
+    font-family: "Platypi", serif;
+    cursor: pointer;
+}
+
+.filterBtn:hover, .searchBtn:hover {
+    color: white;
+    background-color: #1C2B48;
+}
